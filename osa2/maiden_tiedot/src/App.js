@@ -18,7 +18,7 @@ const Filter = (props) => {
 //--------------------Countries-------------------------------------------------
 
 const Countries = ({ filtered, filterText, clickHandler, weather }) => {
-  console.log(filterText, "Countries");
+  // console.log(filterText, "Countries");
   if (filtered.length > 10) {
     return (
       <div>
@@ -32,7 +32,7 @@ const Countries = ({ filtered, filterText, clickHandler, weather }) => {
           <CountryMany
             key={country.name}
             country={country}
-            clickHandler={clickHandler}
+            clickHandler={() => clickHandler(country)}
           /> )
         }
       </div>
@@ -56,13 +56,10 @@ const Countries = ({ filtered, filterText, clickHandler, weather }) => {
 //-----------------List-of-countries--------------------------------------------
 
 const CountryMany = (props) => {
-  const handleClick = (country) => {
-    return () => props.clickHandler(country)
-  }
   return (
     <div>
       {props.country.name}
-      <button onClick={handleClick(props.country)}>show</button>
+      <button onClick={props.clickHandler}>show</button>
     </div>
   )
 }
@@ -118,9 +115,9 @@ const Language = (props) => {
 
 const App = () =>  {
   const [ countries, setCountries] = useState([])
-  const [ filterText, setFilterText] = useState('Fi')
+  const [ filterText, setFilterText] = useState('')
   const [ weather, setWeather] = useState([])
-  console.log(filterText, "Appissa");
+  // console.log(filterText, "Appissa");
 
   const filtered = countries.filter((country) =>
     country.name.toLowerCase().includes(filterText.toLowerCase())
