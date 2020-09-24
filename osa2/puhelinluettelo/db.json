@@ -1,23 +1,18 @@
 {
-  "persons":[
+  "persons": [
     {
-      "name": "Arto Hellas",
-      "number": "040-123456",
-      "id": 1
-    },
-    {
-      "name": "Ada Lovelace",
-      "number": "39-44-5323523",
+      "name": "Ville Vasikka",
+      "number": "+3421234 53552",
       "id": 2
     },
     {
-      "name": "Dan Abramov",
-      "number": "12-43-234345",
+      "name": "Timmo Kimonen",
+      "number": "+358 123 040 2",
       "id": 3
     },
     {
-      "name": "Mary Poppendieck",
-      "number": "39-23-6423122",
+      "name": "Appo Auto",
+      "number": "+333 1313131313",
       "id": 4
     }
   ]
