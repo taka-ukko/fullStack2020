@@ -56,6 +56,10 @@ const App = () => {
       setNewNumber("")
       messageSetter("success", `Added ${returnedPerson.name}`)
     })
+    .catch(error => {
+      // console.log(error.response.data.error)
+      messageSetter("error", error.response.data.error)
+    })
 
   }
 
