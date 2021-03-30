@@ -29,10 +29,10 @@ module.exports = {
 		'eqeqeq': 'error',
       	'no-trailing-spaces': 'error',
       	'object-curly-spacing': [
-          'error', 'always'
+        'error', 'always'
      	 ],
       	'arrow-spacing': [
-          'error', { 'before': true, 'after': true }
+        'error', { 'before': true, 'after': true }
       	],
       	'no-console': 0,
 		'no-mixed-spaces-and-tabs': 0
