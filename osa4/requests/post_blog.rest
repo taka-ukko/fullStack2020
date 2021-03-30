@@ -2,9 +2,9 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-    "title": "Puuhöylä",
-    "author": "Sub-tv Juontaja",
-    "url": "http://www.puuhoyla.fi",
-    "likes": 10
+    "title": "Shibaal",
+    "author": "Ose",
+    "url": "http://www.sipali.fi",
+    "likes": 1000
 
 }
