@@ -34,7 +34,7 @@ blogsRouter.post('/', middleware.userExtractor, async (request, response) => {
 
     const user = request.user
 
-    console.log(user)
+    // console.log(user)
 
     body.user = user._id
 

@@ -45,7 +45,7 @@ const userExtractor = async (request, response, next) => {
     return response.status(401).json({ error: 'token missing or invalid' })
   }
   const user = await User.findById(decodedToken.id)
-  console.log('hejdå')
+  // console.log('hejdå')
   request.user = user
   next()
 }
