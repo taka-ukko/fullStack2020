@@ -1,7 +1,7 @@
 const blogsRouter = require('express').Router()
 const Blog = require('../models/blog')
-const User = require('../models/user')
-const jwt = require('jsonwebtoken')
+// const jwt = require('jsonwebtoken')
+const middleware = require('../utils/middleware')
 
 // const getTokenFrom = request => {
 //   const authorization = request.get('authorization')
@@ -22,7 +22,7 @@ blogsRouter.get('/', async (request, response) => {
   //   })
 })
 
-blogsRouter.post('/', async (request, response) => {
+blogsRouter.post('/', middleware.userExtractor, async (request, response) => {
   const body = request.body
 
   if (!body.likes) {
@@ -32,11 +32,9 @@ blogsRouter.post('/', async (request, response) => {
     response.status(400).json({ error: 'content missing' })
   } else {
 
-    const decodedToken = jwt.verify(request.token, process.env.SECRET)
-    if (!request.token || !decodedToken.id) {
-      return response.status(401).json({ error: 'token missing or invalid' })
-    }
-    const user = await User.findById(decodedToken.id)
+    const user = request.user
+
+    console.log(user)
 
     body.user = user._id
 
@@ -51,16 +49,18 @@ blogsRouter.post('/', async (request, response) => {
   }
 })
 
-blogsRouter.delete('/:id', async (request, response) => {
+blogsRouter.delete('/:id', middleware.userExtractor, async (request, response) => {
 
-  const decodedToken = jwt.verify(request.token, process.env.SECRET)
-  if (!request.token || !decodedToken.id) {
-    return response.status(401).json({ error: 'token missing or invalid' })
-  }
+  // const decodedToken = jwt.verify(request.token, process.env.SECRET)
+  // if (!request.token || !decodedToken.id) {
+  //   return response.status(401).json({ error: 'token missing or invalid' })
+  // }
+
+  const user = request.user
 
   const blog = await Blog.findById(request.params.id)
 
-  if (blog.user.toString() !== decodedToken.id.toString()) {
+  if (blog.user.toString() !== user.id.toString()) {
     return response.status(401).json({ error: 'unauthorized action' })
   }
 

@@ -3,7 +3,7 @@ Content-Type: application/json
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjEyMzQiLCJpZCI6IjYwNjcyMDVlNmY3MmQ5NDdjMDhkNjQ5NiIsImlhdCI6MTYxNzM3MTIzN30.CRWahpyovsQiu3R0M6e-ysXlLoV13QxDcV0W4JaGMxY
 
 {
-    "title": "Shibaali 666 salt and vinegar",
+    "title": "Shibaali 15 dark side of the moon",
     "author": "Ose",
     "url": "http://www.sipali.fi",
     "likes": 1000
