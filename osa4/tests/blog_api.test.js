@@ -12,7 +12,7 @@ beforeEach(async () => {
     await Blog.insertMany(helper.initBlogs)
 })
 
-test('there is ' + helper.initBlogs.length + ' blogs', async () => {
+test('all blogs are fetched', async () => {
     const response = await api.get('/api/blogs')
     expect(response.body).toHaveLength(helper.initBlogs.length)
 })
@@ -74,6 +74,57 @@ test('a blog without a title or url cannot be added', async () => {
       .post('/api/blogs')
       .send(newBlog)
       .expect(400)
+})
+
+test('a blog can be deleted', async () => {
+    const blogsAtStart = await helper.blogsInDb()
+    const blogToDelete = blogsAtStart[0]
+
+    await api
+        .delete('/api/blogs/' + blogToDelete.id)
+        .expect(204)
+
+    const blogsAtEnd = await helper.blogsInDb()
+
+    expect(blogsAtEnd).toHaveLength(
+        helper.initBlogs.length - 1
+    )
+
+    const contents = blogsAtEnd.map(r => r.title)
+
+    expect(contents).not.toContain(blogToDelete.title)
+})
+
+test('likes can be updated', async () => {
+    const blogsAtStart = await helper.blogsInDb()
+    const blogToUpdate = blogsAtStart[0]
+
+    const updatedLikes = {
+        likes: 123456
+    }
+
+    await api
+        .put('/api/blogs/' + blogToUpdate.id)
+        .send(updatedLikes)
+        .expect(200)
+
+    const blogsAtEnd = await helper.blogsInDb()
+
+    console.log(blogsAtEnd)
+
+    expect(blogsAtEnd).toHaveLength(
+        helper.initBlogs.length
+    )
+
+    const contentsL = blogsAtEnd.map(r => r.likes)
+    const contentsT = blogsAtEnd.map(r => r.title)
+
+    expect(contentsL).not.toContain(blogToUpdate.likes)
+    expect(contentsL).toContain(123456)
+
+    expect(contentsT).toContain(blogToUpdate.title)
+
+
 })
 
 afterAll(() => {
