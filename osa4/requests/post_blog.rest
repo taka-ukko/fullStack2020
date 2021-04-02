@@ -1,10 +1,12 @@
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlBpcHNhcG9zc3UiLCJpZCI6IjYwNjcwYjYwYjQxZjVjMjc4NGM0NjMzZiIsImlhdCI6MTYxNzM2ODUwMn0.wlpLIJ-tJpfDXX9BgXGpBxAdd4lURprMJjWvXZeKfj4
 
 {
-    "title": "Shibaal",
+    "title": "Shibaali2 electric boogaloo",
     "author": "Ose",
     "url": "http://www.sipali.fi",
     "likes": 1000
+
 
 }
