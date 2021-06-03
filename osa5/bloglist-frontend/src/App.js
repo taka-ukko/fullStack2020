@@ -18,7 +18,7 @@ const App = () => {
   const [user, setUser] = useState(null)
   
   const blogFormRef = useRef()
-  
+
   useEffect(() => {
     blogService.getAll().then(blogs =>
       setBlogs( blogs )
@@ -81,6 +81,16 @@ const App = () => {
     }
   }
 
+  const updateBlog = async (blogObject) => {
+    try {
+      const returnedBlog = await blogService.update(blogObject)
+      setBlogs(blogs.filter(x => x.id !== returnedBlog.id).concat(returnedBlog))
+      messageSetter('success', `Blog ${returnedBlog.title} by ${returnedBlog.author} was liked`)
+    } catch (exception) {
+      messageSetter('error', 'updating blog failed')
+    }
+  }
+
 
   const loginInfo = () => (
     <>
@@ -91,7 +101,7 @@ const App = () => {
   const blogList = () => (
     <>
       {blogs.map(blog =>
-          <Blog key={blog.id} blog={blog} />
+          <Blog key={blog.id} blog={blog} updateBlog={updateBlog}/>
         )}
     </>
   )
