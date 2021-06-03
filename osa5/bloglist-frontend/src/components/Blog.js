@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-const Blog = ({blog, updateBlog}) => {
+const Blog = ({blog, updateBlog, deleteBlog, user}) => {
   const [open, setOpen] = useState(false)
 
   const hideWhenOpen = { display: open ? 'none' : '' }
@@ -29,6 +29,16 @@ const Blog = ({blog, updateBlog}) => {
     })
   }
 
+  const removeBlog = (event) => {
+    event.preventDefault()
+    const confirmed = window.confirm(`Remove blog ${blog.title} by ${blog.author}?`)
+    if (!confirmed) {
+      return
+    } else {
+      deleteBlog(blog.id)
+    }
+  }
+
   return (
     <div style = {blogStyle}>
       <div style = {hideWhenOpen}>
@@ -42,6 +52,8 @@ const Blog = ({blog, updateBlog}) => {
         {blog.likes} <button onClick={likeBlog}>like</button>
         <br></br>
         {blog.user.name}
+        <br></br>
+        {user.username === blog.user.username ? <button onClick={removeBlog}>remove</button> : <></>}
       </div>  
 
     </div>

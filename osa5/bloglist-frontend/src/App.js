@@ -87,10 +87,20 @@ const App = () => {
       setBlogs(blogs.filter(x => x.id !== returnedBlog.id).concat(returnedBlog))
       messageSetter('success', `Blog ${returnedBlog.title} by ${returnedBlog.author} was liked`)
     } catch (exception) {
-      messageSetter('error', 'updating blog failed')
+      messageSetter('error', 'Failed to update a blog')
     }
   }
 
+  const deleteBlog = async (id) => {
+    try {
+      const blogToRemove = blogs.find(x => x.id === id)
+      await blogService.remove(id)
+      setBlogs(blogs.filter(x => x.id !== id))
+      messageSetter('success', `Blog ${blogToRemove.title} by ${blogToRemove.author} was removed`)
+    } catch (exception) {
+      messageSetter('error', 'Failed to remove a blog')
+    }
+  }
 
   const loginInfo = () => (
     <>
@@ -101,7 +111,13 @@ const App = () => {
   const blogList = () => (
     <>
       {blogs.sort((x, y) => y.likes - x.likes).map(blog =>
-          <Blog key={blog.id} blog={blog} updateBlog={updateBlog}/>
+          <Blog 
+            key={blog.id} 
+            blog={blog} 
+            updateBlog={updateBlog}
+            deleteBlog={deleteBlog}
+            user={user}
+          />
         )}
     </>
   )
