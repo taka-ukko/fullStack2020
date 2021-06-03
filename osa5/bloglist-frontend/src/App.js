@@ -84,6 +84,7 @@ const App = () => {
   const updateBlog = async (blogObject) => {
     try {
       const returnedBlog = await blogService.update(blogObject)
+      returnedBlog.user = blogObject.user
       setBlogs(blogs.filter(x => x.id !== returnedBlog.id).concat(returnedBlog))
       messageSetter('success', `Blog ${returnedBlog.title} by ${returnedBlog.author} was liked`)
     } catch (exception) {
