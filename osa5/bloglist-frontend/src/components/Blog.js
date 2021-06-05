@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-const Blog = ({blog, updateBlog, deleteBlog, user}) => {
+const Blog = ({ blog, updateBlog, deleteBlog, user }) => {
   const [open, setOpen] = useState(false)
 
   const hideWhenOpen = { display: open ? 'none' : '' }
@@ -23,7 +23,7 @@ const Blog = ({blog, updateBlog, deleteBlog, user}) => {
       title: blog.title,
       author: blog.author,
       url: blog.url,
-      likes: blog.likes + 1, 
+      likes: blog.likes + 1,
       user: blog.user,
       id: blog.id
     })
@@ -43,7 +43,7 @@ const Blog = ({blog, updateBlog, deleteBlog, user}) => {
     <div style = {blogStyle}>
       <div style = {hideWhenOpen}>
         {blog.title} / {blog.author} <button onClick={toggleOpen}>view</button>
-      </div>  
+      </div>
       <div style = {showWhenOpen}>
         {blog.title} / {blog.author} <button onClick={toggleOpen}>hide</button>
         <br></br>
@@ -54,7 +54,7 @@ const Blog = ({blog, updateBlog, deleteBlog, user}) => {
         {blog.user.name}
         <br></br>
         {user.username === blog.user.username ? <button onClick={removeBlog}>remove</button> : <></>}
-      </div>  
+      </div>
 
     </div>
   )

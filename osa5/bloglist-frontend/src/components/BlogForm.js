@@ -1,49 +1,4 @@
-import React, {useState} from 'react'
-
-// const BlogForm = ({
-//     newTitle,
-//     newAuthor, 
-//     newUrl, 
-//     handleBlogCreation, 
-//     handleTitleChange,
-//     handleAuthorChange,
-//     handleUrlChange
-//   }) => { return (  
-//     <>
-//       <h2>Create a new blog</h2>
-//       <form onSubmit={handleBlogCreation}>
-//         <div>
-//           title:
-//             <input
-//             type="text"
-//             value={newTitle}
-//             name="Title"
-//             onChange={handleTitleChange}
-//           />
-//         </div>
-//         <div>
-//           author:
-//             <input
-//             type="text"
-//             value={newAuthor}
-//             name="Author"
-//             onChange={handleAuthorChange}
-//           />
-//         </div>
-//         <div>
-//           url:
-//             <input
-//             type="text"
-//             value={newUrl}
-//             name="Url"
-//             onChange={handleUrlChange}
-//           />
-//         </div>
-//         <button type="submit">create</button>
-//       </form>
-//     </>
-//   )
-// }
+import React, { useState } from 'react'
 
 const BlogForm = ({ createBlog }) => {
   const [newTitle, setNewTitle] = useState('')
@@ -77,38 +32,38 @@ const BlogForm = ({ createBlog }) => {
 
   return (
     <>
-    <h2>Create a new blog</h2>
-    <form onSubmit={addBlog}>
-      <div>
-        title:
+      <h2>Create a new blog</h2>
+      <form onSubmit={addBlog}>
+        <div>
+          title:
           <input
-          type="text"
-          value={newTitle}
-          name="Title"
-          onChange={handleTitleChange}
-        />
-      </div>
-      <div>
-        author:
+            type="text"
+            value={newTitle}
+            name="Title"
+            onChange={handleTitleChange}
+          />
+        </div>
+        <div>
+          author:
           <input
-          type="text"
-          value={newAuthor}
-          name="Author"
-          onChange={handleAuthorChange}
-        />
-      </div>
-      <div>
-        url:
+            type="text"
+            value={newAuthor}
+            name="Author"
+            onChange={handleAuthorChange}
+          />
+        </div>
+        <div>
+          url:
           <input
-          type="text"
-          value={newUrl}
-          name="Url"
-          onChange={handleUrlChange}
-        />
-      </div>
-      <button type="submit">create</button>
-    </form>
-  </>
+            type="text"
+            value={newUrl}
+            name="Url"
+            onChange={handleUrlChange}
+          />
+        </div>
+        <button type="submit">create</button>
+      </form>
+    </>
   )
 }
 
