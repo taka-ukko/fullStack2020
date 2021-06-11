@@ -26,17 +26,17 @@ describe('<Blog />', () => {
         id: '60670b60b41f5c2784c4633f'
     }
 
-    const mockHandler1 = jest.fn()
+    const mockHandlerUpdate = jest.fn()
 
-    const mockHandler2 = jest.fn()
+    const mockHandlerDelete = jest.fn()
 
     beforeEach(() => {
         component = render(
             <Blog
                 blog = {blog}
                 user = {user}
-                updateBlog = {mockHandler1}
-                deleteBlog = {mockHandler2}
+                updateBlog = {mockHandlerUpdate}
+                deleteBlog = {mockHandlerDelete}
             />
         )
     })
@@ -78,6 +78,23 @@ describe('<Blog />', () => {
             '16'
         )
 
+
+    })
+
+    test('calls event handler twice when like-button is clicked twice', () => {
+
+        // component.debug()
+        
+        const viewButton = component.container.querySelector('.viewButton')
+        fireEvent.click(viewButton)
+
+        // component.debug()
+
+        const likeButton = component.container.querySelector('.likeButton')
+        fireEvent.click(likeButton)
+        fireEvent.click(likeButton)
+
+        expect(mockHandlerUpdate.mock.calls).toHaveLength(2)
 
     })
 })
