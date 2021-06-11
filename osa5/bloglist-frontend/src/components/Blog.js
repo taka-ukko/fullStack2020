@@ -41,15 +41,15 @@ const Blog = ({ blog, updateBlog, deleteBlog, user }) => {
 
   return (
     <div style = {blogStyle}>
-      <div style = {hideWhenOpen}>
-        {blog.title} / {blog.author} <button onClick={toggleOpen}>view</button>
+      <div style = {hideWhenOpen} className = 'defaultView'>
+        {blog.title} / {blog.author} <button onClick={toggleOpen} className = 'viewButton'>view</button>
       </div>
-      <div style = {showWhenOpen}>
-        {blog.title} / {blog.author} <button onClick={toggleOpen}>hide</button>
+      <div style = {showWhenOpen} className = 'extendedView'>
+        {blog.title} / {blog.author} <button onClick={toggleOpen} className = 'hideButton'>hide</button>
         <br></br>
         {blog.url}
         <br></br>
-        {blog.likes} <button onClick={likeBlog}>like</button>
+        {blog.likes} <button onClick={likeBlog} className = 'likeButton'>like</button>
         <br></br>
         {blog.user.name}
         <br></br>
