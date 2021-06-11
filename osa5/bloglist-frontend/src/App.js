@@ -74,6 +74,10 @@ const App = () => {
     try {
       blogFormRef.current.toggleVisibility()
       const returnedBlog = await blogService.create(blogObject)
+      returnedBlog.user = {
+        name: user.name,
+        username: user.username
+      }
       setBlogs(blogs.concat(returnedBlog))
       messageSetter('success', `a new blog ${returnedBlog.title} by ${returnedBlog.author} added`)
     } catch (exception) {
@@ -143,7 +147,7 @@ const App = () => {
           {loginInfo()}
           <h2>blogs</h2>
           <Notification message={message} />
-          <Togglable buttonLabel="new blog" ref = {blogFormRef}>
+          <Togglable buttonLabel="create a new blog" ref = {blogFormRef}>
             <BlogForm createBlog = {createBlog} />
           </Togglable>
           {blogList()}
