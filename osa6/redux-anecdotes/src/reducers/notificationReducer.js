@@ -29,12 +29,12 @@ export const showNotification = (content) => {
       type: 'SHOW',
       data: {content}
     }
-  }
+}
   
   export const hideNotification = () => {
     return {
       type: 'HIDE'
     }
-  }
+}
 
 export default reducer
