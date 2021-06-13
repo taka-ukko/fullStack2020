@@ -9,7 +9,7 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
         case 'SHOW':
             const show = {
-                content: action.data.content,
+                content: action.data,
                 show: '' 
             }
             return show
@@ -24,10 +24,17 @@ const reducer = (state = initialState, action) => {
     }
 }
 
-export const showNotification = (content) => {
-    return {
-      type: 'SHOW',
-      data: {content}
+export const setNotification = (content, time) => {
+    return async dispatch => {
+        dispatch({
+            type: 'SHOW',
+            data: content
+        })
+        setTimeout(() => {
+            dispatch({
+                type: 'HIDE'
+            })
+        }, time * 1000)
     }
 }
   
